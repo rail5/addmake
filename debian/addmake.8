@@ -1,0 +1,33 @@
+.\" Manpage for addmake
+.\" Contact andrew@rail5.org to correct errors or typos.
+.TH man 8 "13 October 2023" "1.0" "addmake man page"
+.SH NAME
+addmake
+.SH SYNOPSIS
+addmake
+.SH DESCRIPTION
+Addmake adds a minimal makefile to the current working directory
+.SH OPTIONS
+  -i {file}
+    Specify input filename to compile (default: main.cpp)
+
+  -o {file}
+    Specify output binary name (default: main)
+
+  -c {compiler}
+    Specify command used to compile (default: g++)
+
+  -e {arguments}
+    Specify extra arguments to add to the end of the compile command (default: none)
+
+  -n
+    Disable compiler optimizations [-O2 -s] (default: enabled)
+
+  -h
+    Display the help message
+
+Examples:
+  addmake
+  addmake -i my-program.c -o output-binary -c gcc -n
+.SH AUTHOR
+rail5 (andrew@rail5.org)

@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+cwd="$(pwd)"
+
+compiler="g++"
+optimizations="-O2 -s"
+output_filename="main"
+input_filename="main.cpp"
+extra_flags=""
+
+show_help() {
+	echo "$(basename $0)"
+	echo "Adds a minimal/basic makefile to the current working directory"
+	echo ""
+	echo "Options:"
+	echo "  -i {file}"
+	echo "    Specify input filename to compile (default: main.cpp)"
+	echo "  -o {file}"
+	echo "    Specify output binary name (default: main)"
+	echo "  -c {compiler}"
+	echo "    Specify command used to compile (default: g++)"
+	echo "  -e {arguments}"
+	echo "    Specify extra arguments to add to the end of the compile command (default: none)"
+	echo "  -n"
+	echo "    Disable compiler optimizations [-O2 -s] (default: enabled)"
+	echo "  -h"
+	echo "    Display this"
+	echo ""
+	echo "Examples:"
+	echo "  $(basename $0)"
+	echo "  $(basename $0) -i my-program.c -o output-binary -c gcc -n"
+}
+
+while getopts 'i:o:c:e:nh' arg
+do
+	case "$arg" in
+		i) input_filename="$OPTARG";;
+		o) output_filename="$OPTARG";;
+		c) compiler="$OPTARG";;
+		e) extra_flags="$OPTARG";;
+		n) optimizations="";;
+		h) show_help; exit 0;;
+		?) show_help; exit 1;;
+	esac
+done
+
+cat > "$cwd/makefile" <<EOF
+all:
+	$compiler $optimizations -o "$output_filename" "./$input_filename" $extra_flags
+
+clean:
+	rm -f "./$output_filename"
+EOF
