@@ -1,3 +1,9 @@
+addmake (1.1) stable; urgency=medium
+
+  * Added debug make target
+
+ -- rail5 <andrew@rail5.org>  Mon, 05 Feb 2024 15:45:04 +0800
+
 addmake (1.0) stable; urgency=low
 
   * Initial release
