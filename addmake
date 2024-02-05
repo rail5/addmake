@@ -4,6 +4,7 @@ cwd="$(pwd)"
 
 compiler="g++"
 optimizations="-O2 -s"
+debugflags="-g"
 output_filename="main"
 input_filename="main.cpp"
 extra_flags=""
@@ -47,6 +48,9 @@ done
 cat > "$cwd/makefile" <<EOF
 all:
 	$compiler $optimizations -o "$output_filename" "./$input_filename" $extra_flags
+
+debug:
+	$compiler $debugflags -o "$output_filename" "./$input_filename" $extra_flags
 
 clean:
 	rm -f "./$output_filename"
